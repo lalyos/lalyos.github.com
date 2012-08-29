@@ -30,6 +30,8 @@ If you don't care about the explanation, here is the solution: add 2 line to you
 
 If you do care about details read on ...
 
+<!-- more -->
+
 ## Typical springMVC configuration
 
 {% gist 3509545 webmvc_config.xml %}
