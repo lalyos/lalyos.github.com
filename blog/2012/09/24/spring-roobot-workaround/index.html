@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Spring RooBot workaround - What is the name of this Blog?</title>
+  <meta name="author" content="lalyos">
+
+  
+  <meta name="description" content="I&#8217;m doing all sorts of trainings inside Epam, and one of them is Spring Roo. Roo is a rapid application development tool, you can create maven &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="What is the name of this Blog?" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35058373-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">What is the name of this Blog?</a></h1>
+  
+    <h2>instead of notepad</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lalyos.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Spring RooBot Workaround</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-24T09:07:00+02:00" pubdate data-updated="true">Sep 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m doing all sorts of trainings inside <a href="http://www.epam.com/">Epam</a>, and one of them is Spring Roo. Roo is a rapid application development tool, you can create maven based SpringMVC applications which serves hibernate JPA entities backed by mysql It&#8217;s not limited to this framework mixture, although this is one of the most popular.</p>
+
+<p>Spring Roo is modular, you can install new features with the <strong>install addon</strong> command. The actual list of addons is collected by a process called <strong>RooBot</strong>. For some reason RooBot is unable to di his work since late June. Some explanation can be found at the <a href="https://jira.springsource.org/browse/ROO-3184">ROO-3184 Jira Issue</a>.</p>
+
+<p>When you try to install any addon, or even list them you get the folowing:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>roo&gt; addon list 
+</span><span class='line'>No add-ons known. Are you online? Try the 'download status' command</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>For the impatient</h2>
+
+<p>when you see that, just simple type the following (using the symbolic name of your missing addon)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+</span><span class='line'>
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.addon.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>if you are interested in the whole story just read on &#8230;</p>
+
+<!-- more -->
+
+
+<h2>Addon Requirement</h2>
+
+<p>Quote of the <a href="http://static.springsource.org/spring-roo/reference/html-single/index.html#usage-add-ons">Official docs</a></p>
+
+<blockquote><p>Roo&#8217;s add-on distribution system encourages individual add-on developers to host their add-on web site (we don&#8217;t believe in a central model where we must host add-ons on our servers). The main requirement an add-on developer needs to fulfill is their add-ons must be in OSGi format and their web site must include an OSGi Bundle Repository (OBR) index file. &#8230; An OBR file is usually named repository.xml and it is available over HTTP. If you&#8217;re curious what these OBR files look like, you can view the Spring Roo OBR repository at http://spring-roo-repository.springsource.org/repository.xml.</p></blockquote>
+
+<p>There are 2 types of addons:</p>
+
+<ul>
+<li>official or base: They are part of Spring Roo&#8217;s <a href="https://github.com/SpringSource/spring-roo">source repo</a></li>
+<li>community: They are created, and hosted by the community.</li>
+</ul>
+
+
+<h2>Base Addons</h2>
+
+<p>It sounds like they are part of the distribution, so you assume that when you download a binary distribution, you alread have <strong>all</strong> base addon installed. Almost &#8230; i couldn&#8217;t figure it out, probably the once which require 3. party dependencies are not included in the binary distro. For example 2 of them:</p>
+
+<ul>
+<li>Git addon</li>
+<li>CloudFoundry addon</li>
+</ul>
+
+
+<p>There were already some issues about it in jira: <a href="https://jira.springsource.org/browse/ROO-3276">ROO-3276</a> and I need both for my trainings so I was serching for some solution, and found in the docs the following:</p>
+
+<blockquote><p>Even if an add-on is not listed in RooBot, you can still install it. The &#8220;osgi obr url add&#8221; command can be used to add the add-on&#8217;s OBR URL to your Roo installation. This command is typically followed by an &#8220;osgi obr start&#8221; command to download and start the add-on. Importantly, the additional security verifications performed by RooBot are skipped &#8230;</p></blockquote>
+
+<p>So if you recall the first quote&#8217;s last sentence, starting with If you&#8217;re <strong>curious</strong> &#8230;
+I was definitely curious so tried the following <strong>in roo shell</strong>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+</span><span class='line'>
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.addon.cloud.foundry
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.addon.git</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Community Addons</h2>
+
+<p>Because they are registered only with RooBot, there is no easy workaround to get a list of them. Although as the official Roo doc&#8217;s <a href="http://static.springsource.org/spring-roo/reference/html-single/index.html#d4e3384">Publishing to RooBot</a> section suggests, you have to put your code to <a href="http://code.google.com/">Google Code</a>, and also there should be an osgi compliant <strong>repository.xml</strong> describint the specific addon and its dependencies.</p>
+
+<p>So theoretically one could serach for Spring Roo Addons on Google Code, collect all repository.xml, merge it one, and there you go, you replaced RooBot. By the way I&#8217;m trying to achieve it, stay tuned &#8230;</p>
+
+<h2>Missing Database Driver Wrappers</h2>
+
+<p>I saw also some other addon specific jira issues: <a href="https://jira.springsource.org/browse/ROO-3191">ROO-3191</a> relating to database driver wrappers. They can use a similar workaround:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+</span><span class='line'>osgi obr deploy --bundleSymbolicName org.springframework.roo.wrapping.h2</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">lalyos</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-24T09:07:00+02:00" pubdate data-updated="true">Sep 24<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/roo/'>roo</a>, <a class='category' href='/blog/categories/roobot/'>roobot</a>, <a class='category' href='/blog/categories/spring-roo/'>spring-roo</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround/" data-via="" data-counturl="http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/" title="Previous Post: Reload  tiles definitions in SpringMVC">&laquo; Reload  tiles definitions in SpringMVC</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/30/install-sshpass-on-mac/" title="Next Post: Install sshpass on mac">Install sshpass on mac &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/30/install-sshpass-on-mac/">Install sshpass on mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/24/spring-roobot-workaround/">Spring RooBot workaround</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/">Reload  tiles definitions in SpringMVC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/10/maven-tomcat-in-debug-mode/">Starting tomcat in debug mode from maven</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - lalyos -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

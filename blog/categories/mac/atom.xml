@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mac | What is the name of this Blog?]]></title>
+  <link href="http://lalyos.github.com/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://lalyos.github.com/"/>
+  <updated>2013-09-30T16:38:10+02:00</updated>
+  <id>http://lalyos.github.com/</id>
+  <author>
+    <name><![CDATA[lalyos]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Install sshpass on mac]]></title>
+    <link href="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/"/>
+    <updated>2013-09-30T14:07:00+02:00</updated>
+    <id>http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac</id>
+    <content type="html"><![CDATA[<p>I'm experimenting with <a href="http://www.ansibleworks.com/">ansibe</a>, an awesome IT orchestration engine. It deservse its own blog entry, but in short: <strong>It's an alternative of puppet and chef, but its much easier to learn</strong>, and dowsn't require any client side agent installation.</p>
+
+<h2>passwordless ssh</h2>
+
+<p>Its higly recommended to use public key authentication, but sometimes you have to deal with passwords. Let's say a fresh virtual environment is always created with a default password.</p>
+
+<p>When I tried to call ansible with <strong>-k</strong> password, meaning ask for password, i faced the following message:</p>
+
+<p><code>
+to use the 'ssh' connection type with passwords, you must install the sshpass program
+</code></p>
+
+<h2>installing sshpass</h2>
+
+<p>Installing sshpass on linux is as easy as calling <em>apt-get</em> or <em>yum</em>, whatever package manager its using. Unfortunately <strong>homebrwe</strong>, my favourite package manager for mac doesn't supports this package officially.</p>
+
+<p>Actually it was created, but the team refused to take <a href="https://github.com/mxcl/homebrew/pull/9577">it</a> as its a bad practice to put passwords into scripts.</p>
+
+<p>However there is an unofficial brew package:</p>
+
+<p><code>
+brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

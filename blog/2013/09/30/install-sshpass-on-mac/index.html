@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install sshpass on mac - What is the name of this Blog?</title>
+  <meta name="author" content="lalyos">
+
+  
+  <meta name="description" content="I&#8217;m experimenting with ansibe, an awesome IT orchestration engine. It deservse its own blog entry, but in short: It&#8217;s an alternative of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="What is the name of this Blog?" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35058373-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">What is the name of this Blog?</a></h1>
+  
+    <h2>instead of notepad</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lalyos.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Install Sshpass on Mac</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T14:07:00+02:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m experimenting with <a href="http://www.ansibleworks.com/">ansibe</a>, an awesome IT orchestration engine. It deservse its own blog entry, but in short: <strong>It&#8217;s an alternative of puppet and chef, but its much easier to learn</strong>, and dowsn&#8217;t require any client side agent installation.</p>
+
+<h2>passwordless ssh</h2>
+
+<p>Its higly recommended to use public key authentication, but sometimes you have to deal with passwords. Let&#8217;s say a fresh virtual environment is always created with a default password.</p>
+
+<p>When I tried to call ansible with <strong>-k</strong> password, meaning ask for password, i faced the following message:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>to use the 'ssh' connection type with passwords, you must install the sshpass program</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>installing sshpass</h2>
+
+<p>Installing sshpass on linux is as easy as calling <em>apt-get</em> or <em>yum</em>, whatever package manager its using. Unfortunately <strong>homebrwe</strong>, my favourite package manager for mac doesn&#8217;t supports this package officially.</p>
+
+<p>Actually it was created, but the team refused to take <a href="https://github.com/mxcl/homebrew/pull/9577">it</a> as its a bad practice to put passwords into scripts.</p>
+
+<p>However there is an unofficial brew package:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">lalyos</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T14:07:00+02:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ansible/'>ansible</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/install/'>install</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/sshpass/'>sshpass</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/" data-via="" data-counturl="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/24/spring-roobot-workaround/" title="Previous Post: Spring RooBot workaround">&laquo; Spring RooBot workaround</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/30/install-sshpass-on-mac/">Install sshpass on mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/24/spring-roobot-workaround/">Spring RooBot workaround</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/">Reload  tiles definitions in SpringMVC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/10/maven-tomcat-in-debug-mode/">Starting tomcat in debug mode from maven</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - lalyos -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
