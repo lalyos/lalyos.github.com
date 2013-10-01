@@ -9,7 +9,7 @@
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="If you reaaly want to see the ctual scripts ansible is running use the ANSIBLE_KEEP_REMOTE_FILES=1 to prevent ansible from deleting remote files. tl; &hellip;">
+  <meta name="description" content="If you reaaly want to see the ctual scripts ansible is running use the ANSIBLE_KEEP_REMOTE_FILES=1 to prevent ansible from deleting remote files. ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,35 +107,12 @@
 
   <div class="entry-content"><p>If you reaaly want to see the ctual scripts ansible is running use the  <code>ANSIBLE_KEEP_REMOTE_FILES=1</code> to prevent ansible from deleting remote files.</p>
 
-<h2>tl;dr</h2>
-
-<p><a href="http://www.ansibleworks.com/">Ansible</a> is the new kid in the <em>Configuration Management</em> / <em>Application Deployment</em> / <em>Continuous Delivery</em> field. Its much easier to learn than puppet/chef and it using <strong>yaml</strong> for describing playbooks.</p>
-
-<p>Sometimes yo run into trouble when using ansible and want to get more detailed output for debugging the issue. Of course there is the <code>-v</code> option which can be even more verbose with <code>-vvv</code>.</p>
-
-<h2>How ansible works</h2>
-
-<p>Ansible is well known for its unique feature of: <strong>no agent needed</strong>. Actually it does need something on the orchestrated node, namely pytho. But its true that in most modern *nix its already provided.</p>
-
-<p>So How does ansible works behinde the sceenes:</p>
-
-<ul>
-<li>you desribe your <strong>playbook</strong> in a YAML file</li>
-<li>ansible generates a python script</li>
-<li>copies it to the target node via ssh</li>
-<li>runs the python script</li>
-<li>collects the output/return codes</li>
-<li>deletes all the temporary scriptes/files from the remote host.</li>
-</ul>
-
-
-<p>If you want to avoid the last step you can use the mentioned environment variable as:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ANSIBLE_KEEP_REMOTE_FILES=1  ansible -vvvv host -m shell -a 'hstname'</span></code></pre></td></tr></table></div></figure>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/10/01/debug-ansible/">Read on &rarr;</a>
+    </footer>
   
 
 

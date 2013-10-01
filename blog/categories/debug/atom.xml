@@ -4,7 +4,7 @@
   <title><![CDATA[Category: debug | What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/blog/categories/debug/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2013-10-01T17:13:49+02:00</updated>
+  <updated>2013-10-01T17:16:53+02:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -19,6 +19,9 @@
     <updated>2013-10-01T16:51:00+02:00</updated>
     <id>http://lalyos.github.com/blog/2013/10/01/debug-ansible</id>
     <content type="html"><![CDATA[<p>If you reaaly want to see the ctual scripts ansible is running use the  <code>ANSIBLE_KEEP_REMOTE_FILES=1</code> to prevent ansible from deleting remote files.</p>
+
+<!-- more -->
+
 
 <h2>tl;dr</h2>
 
