@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Install sshpass on mac - What is the name of this Blog?</title>
+  <title>fixing startup on docker - What is the name of this Blog?</title>
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="I&#8217;m experimenting with ansibe, an awesome IT orchestration engine. It deservse its own blog entry, but in short: It&#8217;s an alternative of &hellip;">
+  <meta name="description" content="When working in docker container, you need to start services differently. Let&#8217;s say you want to start mysql. You have 3 choices: mysqld_safe & &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/">
+  <link rel="canonical" href="http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">Install Sshpass on Mac</h1>
+      <h1 class="entry-title">Fixing Startup on Docker</h1>
     
     
       <p class="meta">
@@ -95,35 +95,57 @@
   
 
 
-<time datetime="2013-09-30T14:07:00+02:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+<time datetime="2013-10-01T15:31:00+02:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I&#8217;m experimenting with <a href="http://www.ansibleworks.com/">ansibe</a>, an awesome IT orchestration engine. It deservse its own blog entry, but in short: <strong>It&#8217;s an alternative of puppet and chef, but its much easier to learn</strong>, and dowsn&#8217;t require any client side agent installation.</p>
+<div class="entry-content"><p>When working in <a href="http://www.docker.io/">docker</a> container, you need to start services differently. Let&#8217;s say you want to start <strong>mysql</strong>. You have 3 choices:</p>
 
-<h2>passwordless ssh</h2>
-
-<p>Its higly recommended to use public key authentication, but sometimes you have to deal with passwords. Let&#8217;s say a fresh virtual environment is always created with a default password.</p>
-
-<p>When I tried to call ansible with <strong>-k</strong> password, meaning ask for password, i faced the following message:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>to use the 'ssh' connection type with passwords, you must install the sshpass program</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li><code>mysqld_safe &amp;</code> which is a quick and dirty solution but its not idempotent.</li>
+<li><code>/etc/init.d/mysql restart</code> its the <em>old school</em> way</li>
+<li><code>service mysql start</code> that&#8217;s the <em>new school</em> way</li>
+</ul>
 
 
-<h2>installing sshpass</h2>
+<p>Normally you would prefer the 3. option <code>service mysql start</code> but it needs <em>upstart</em> running which is normally the <strong>/sbin/init</strong> process with the special <strong>pid</strong> of 1.</p>
 
-<p>Installing sshpass on linux is as easy as calling <em>apt-get</em> or <em>yum</em>, whatever package manager its using. Unfortunately <strong>homebrwe</strong>, my favourite package manager for mac doesn&#8217;t supports this package officially.</p>
+<p>Unfortunately inside of a docker instance the special <strong>1 pid</strong> is rserved for the command started by docker. In most case its either <strong>/bin/bash</strong>, or <strong>sshd</strong>, ot whatever service you are running in the container.</p>
 
-<p>Actually it was created, but the team refused to take <a href="https://github.com/mxcl/homebrew/pull/9577">it</a> as its a bad practice to put passwords into scripts.</p>
-
-<p>However there is an unofficial brew package:</p>
+<p>when you try to start mysql with  then you will most probably face the following message:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Failed to connect to socket /com/ubuntu/upstart: Connection refused</span></code></pre></td></tr></table></div></figure>
+
+
+<p>thats because upstart is not running, or phrasing differently: <strong>1 pid</strong> is not <strong>/sbin/init</strong></p>
+
+<h2>upstart workaround</h2>
+
+<p>There is a workaround for supressing this messages:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg-divert --local --rename --add /sbin/initctl
+</span><span class='line'>ln -s /bin/true /sbin/initctl</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course you stil can&#8217;t use <code>service mysql start</code>, but at least you wont get those error messages.</p>
+
+<h2>issues / pull-reqs</h2>
+
+<p>I can see that the docker issues/pull requests are disscussing it. But im still not sure the proper way to go. But here are the references:</p>
+
+<ul>
+<li><a href="https://github.com/dotcloud/docker/issues/223">issue 223</a>: the original <strong>Run /sbin/init</strong> issue</li>
+<li><a href="https://github.com/dotcloud/docker/issues/1024">issue 1024</a>: the <strong>Container cannot connect to Upstart</strong> issue where i found the workaround</li>
+<li><a href="https://github.com/dotcloud/docker/pull/898">pull-req 898</a>: Inject dockerinit at /.dockerinit instead of overwriting /sbin/init</li>
+<li><a href="https://github.com/dotcloud/docker/pull/1209">pull-req 1209</a>: Upstart improvements</li>
+<li><a href="https://github.com/dotcloud/docker/pull/1883">pull-req 1883</a>:  /usr/sbin/policy-rc.d  is added since the vast majority of docker users are surprised when they apt-get install or apt-get upgrade and services fail to start and that sometimes makes the install fail</li>
+</ul>
 
 </div>
 
@@ -147,12 +169,12 @@
   
 
 
-<time datetime="2013-09-30T14:07:00+02:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+<time datetime="2013-10-01T15:31:00+02:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ansible/'>ansible</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/install/'>install</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/sshpass/'>sshpass</a>
+    <a class='category' href='/blog/categories/docker/'>docker</a>, <a class='category' href='/blog/categories/startup/'>startup</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -161,7 +183,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/" data-via="" data-counturl="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/" data-via="" data-counturl="http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/" >Tweet</a>
   
   
   
@@ -170,10 +192,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/09/24/spring-roobot-workaround/" title="Previous Post: Spring RooBot workaround">&laquo; Spring RooBot workaround</a>
+        <a class="basic-alignment left" href="/blog/2013/09/30/install-sshpass-on-mac/" title="Previous Post: Install sshpass on mac">&laquo; Install sshpass on mac</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/10/01/fixing-startup-on-docker/" title="Next Post: fixing startup on docker">fixing startup on docker &raquo;</a>
       
     </p>
   </footer>

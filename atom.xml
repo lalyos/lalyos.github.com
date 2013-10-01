@@ -4,7 +4,7 @@
   <title><![CDATA[What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2013-09-30T16:38:10+02:00</updated>
+  <updated>2013-10-01T16:07:04+02:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[fixing startup on docker]]></title>
+    <link href="http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/"/>
+    <updated>2013-10-01T15:31:00+02:00</updated>
+    <id>http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker</id>
+    <content type="html"><![CDATA[<p>When working in <a href="http://www.docker.io/">docker</a> container, you need to start services differently. Let&#8217;s say you want to start <strong>mysql</strong>. You have 3 choices:</p>
+
+<ul>
+<li><code>mysqld_safe &amp;</code> which is a quick and dirty solution but its not idempotent.</li>
+<li><code>/etc/init.d/mysql restart</code> its the <em>old school</em> way</li>
+<li><code>service mysql start</code> that&#8217;s the <em>new school</em> way</li>
+</ul>
+
+
+<p>Normally you would prefer the 3. option <code>service mysql start</code> but it needs <em>upstart</em> running which is normally the <strong>/sbin/init</strong> process with the special <strong>pid</strong> of 1.</p>
+
+<p>Unfortunately inside of a docker instance the special <strong>1 pid</strong> is rserved for the command started by docker. In most case its either <strong>/bin/bash</strong>, or <strong>sshd</strong>, ot whatever service you are running in the container.</p>
+
+<p>when you try to start mysql with  then you will most probably face the following message:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Failed to connect to socket /com/ubuntu/upstart: Connection refused</span></code></pre></td></tr></table></div></figure>
+
+
+<p>thats because upstart is not running, or phrasing differently: <strong>1 pid</strong> is not <strong>/sbin/init</strong></p>
+
+<h2>upstart workaround</h2>
+
+<p>There is a workaround for supressing this messages:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg-divert --local --rename --add /sbin/initctl
+</span><span class='line'>ln -s /bin/true /sbin/initctl</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course you stil can&#8217;t use <code>service mysql start</code>, but at least you wont get those error messages.</p>
+
+<h2>issues / pull-reqs</h2>
+
+<p>I can see that the docker issues/pull requests are disscussing it. But im still not sure the proper way to go. But here are the references:</p>
+
+<ul>
+<li><a href="https://github.com/dotcloud/docker/issues/223">issue 223</a>: the original <strong>Run /sbin/init</strong> issue</li>
+<li><a href="https://github.com/dotcloud/docker/issues/1024">issue 1024</a>: the <strong>Container cannot connect to Upstart</strong> issue where i found the workaround</li>
+<li><a href="https://github.com/dotcloud/docker/pull/898">pull-req 898</a>: Inject dockerinit at /.dockerinit instead of overwriting /sbin/init</li>
+<li><a href="https://github.com/dotcloud/docker/pull/1209">pull-req 1209</a>: Upstart improvements</li>
+<li><a href="https://github.com/dotcloud/docker/pull/1883">pull-req 1883</a>:  /usr/sbin/policy-rc.d  is added since the vast majority of docker users are surprised when they apt-get install or apt-get upgrade and services fail to start and that sometimes makes the install fail</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install sshpass on mac]]></title>
