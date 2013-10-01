@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ansible | What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/blog/categories/ansible/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2013-10-01T16:07:04+02:00</updated>
+  <updated>2013-10-01T17:13:49+02:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[debug ansible]]></title>
+    <link href="http://lalyos.github.com/blog/2013/10/01/debug-ansible/"/>
+    <updated>2013-10-01T16:51:00+02:00</updated>
+    <id>http://lalyos.github.com/blog/2013/10/01/debug-ansible</id>
+    <content type="html"><![CDATA[<p>If you reaaly want to see the ctual scripts ansible is running use the  <code>ANSIBLE_KEEP_REMOTE_FILES=1</code> to prevent ansible from deleting remote files.</p>
+
+<h2>tl;dr</h2>
+
+<p><a href="http://www.ansibleworks.com/">Ansible</a> is the new kid in the <em>Configuration Management</em> / <em>Application Deployment</em> / <em>Continuous Delivery</em> field. Its much easier to learn than puppet/chef and it using <strong>yaml</strong> for describing playbooks.</p>
+
+<p>Sometimes yo run into trouble when using ansible and want to get more detailed output for debugging the issue. Of course there is the <code>-v</code> option which can be even more verbose with <code>-vvv</code>.</p>
+
+<h2>How ansible works</h2>
+
+<p>Ansible is well known for its unique feature of: <strong>no agent needed</strong>. Actually it does need something on the orchestrated node, namely pytho. But its true that in most modern *nix its already provided.</p>
+
+<p>So How does ansible works behinde the sceenes:</p>
+
+<ul>
+<li>you desribe your <strong>playbook</strong> in a YAML file</li>
+<li>ansible generates a python script</li>
+<li>copies it to the target node via ssh</li>
+<li>runs the python script</li>
+<li>collects the output/return codes</li>
+<li>deletes all the temporary scriptes/files from the remote host.</li>
+</ul>
+
+
+<p>If you want to avoid the last step you can use the mentioned environment variable as:</p>
+
+<p><code>
+ANSIBLE_KEEP_REMOTE_FILES=1  ansible -vvvv host -m shell -a 'hstname'
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install sshpass on mac]]></title>
