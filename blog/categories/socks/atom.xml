@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: socks | What is the name of this Blog?]]></title>
+  <link href="http://lalyos.github.com/blog/categories/socks/atom.xml" rel="self"/>
+  <link href="http://lalyos.github.com/"/>
+  <updated>2013-10-11T13:32:44+02:00</updated>
+  <id>http://lalyos.github.com/</id>
+  <author>
+    <name><![CDATA[lalyos]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Access docker containers via internal ip]]></title>
+    <link href="http://lalyos.github.com/blog/2013/10/06/access-docker-containers-via-internal-ip/"/>
+    <updated>2013-10-06T09:34:00+02:00</updated>
+    <id>http://lalyos.github.com/blog/2013/10/06/access-docker-containers-via-internal-ip</id>
+    <content type="html"><![CDATA[<p>Whenn you run a lot of containers inside of a docker host, you can get lost of the forwarded ports. Let's say you have 3 instances all exposing 3 ports: 22, 80 and 443. Docker will automatically assign 'random' port numbers like:</p>
+
+<p><code>
+ID            ...  PORTS
+656eb7831dda  ...  49162-&gt;22, 49163-&gt;80, 49164-&gt;443   
+ff2141eb218d  ...  49159-&gt;22, 49160-&gt;80, 49161-&gt;443   
+54b9dfd5400c  ...  49156-&gt;22, 49157-&gt;80, 49158-&gt;443   
+</code></p>
+
+<p>Now its hard to remember all those ports, and is confusing that if you want to ssh into the first one, you use <code>ssh root@docker -p 49162</code> and in the browser you would use: <code>http://docker:49163</code>.</p>
+
+<p>There is an even bigger problem with random ports. Wehn your <strong>http</strong> server sometimes redirects you to <strong>https</strong>, you need the standard port numbers. The webserver running inside of a docker container, will redirect you to port <strong>443</strong> which will not be correct port (49164 in our case)</p>
+
+<p>So it would be much natural for the docker instances to use their ip address, with <em>straight</em> port numbers. But those ip addresses are only valid inside of the docker host. How to do the magic?</p>
+
+<h2>SSH is yor best friend</h2>
+
+<p>There is complete SOCKS proxy hidden indide of ssh. To get it alive you just have to toss a <code>-D 1099</code> parameter, and boom, it will listen on your localhost's 1099 port and act as a proxy. So here is a how you create an ssh based <em>tunnel</em> :</p>
+
+<p><code>
+ssh -qTfN2 -D 1099 docker
+</code></p>
+
+<p>For the curious the parameter meanings:</p>
+
+<ul>
+<li>q :- be very quite</li>
+<li>T :- Do not allocate a pseudo tty</li>
+<li>f :- move the ssh process to background</li>
+<li>N :- Do not execute remote command.</li>
+<li>2 :- Forces ssh to try protocol version 2 only.</li>
+</ul>
+
+
+<h2>docker internal IPs</h2>
+
+<p>How can you get the internal ip of a container? You can get all the dirty details by: <code>sudo docker inspect XXXXX</code>. For the moment the only interresting this is the IP addresses. So the oneliner is:</p>
+
+<p><code>
+for i in $(sudo docker ps -q); do sudo docker inspect $i| grep IPA; done
+</code></p>
+
+<p>it will create the following list:</p>
+
+<p>```</p>
+
+<pre><code>    "IPAddress": "172.17.0.12",
+    "IPAddress": "172.17.0.11",
+    "IPAddress": "172.17.0.10",
+</code></pre>
+
+<p>```</p>
+
+<h2>SOCKS proxy</h2>
+
+<p>Now all the programs which can use a SOCKS proxy can access the docker containers. For example let's poke the first containers webserver with <code>curl</code></p>
+
+<p><code>
+curl --proxy socks5h://localhost:1099  172.17.0.10
+</code></p>
+
+<p>for a java process ypu can specify it by system properties: <code>-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1099</code></p>
+
+<h2>SOCKS proxy for the browser</h2>
+
+<p>You have probably already uses an http proxy in your browser. In that case <strong>all trafic</strong> goes throught the http proxy. For our usecase what we wan is:</p>
+
+<ul>
+<li>accessing docker containers via <strong>SOCKS proxy</strong></li>
+<li>all other shoud be accessed <strong>directly</strong></li>
+</ul>
+
+
+<p>Luckily thus problem is already solved by the <a href="http://en.wikipedia.org/wiki/Proxy_auto-config">Proxy auto-config</a> or shortly PAC. Its a JavaScript function which returns with the connection type: PROXY/SOCKS/DIRECT. See the sample below:</p>
+
+<p>```
+function FindProxyForURL(url, host) {</p>
+
+<pre><code>    // URLs within this network are accessed through
+    // socks proxy provided by ssh -D
+    if (isInNet(host, "172.17.0.0", "255.255.0.0"))
+    {
+            return "SOCKS 127.0.0.1:1099";
+    }
+
+    return "DIRECT";
+</code></pre>
+
+<p>}
+```</p>
+
+<h2>SSH doesn't need a SOCKS proxy</h2>
+
+<p>We use ssh to create a SOCKS proxy, which can be used by other programs java/browser/curl and so on. But ssh is clever enough that if there is no SOCKS proxy opened, it can create it on demand:</p>
+
+<p><code>
+ssh -o ProxyCommand='ssh user@10.253.129.151 nc %h %p' user@targetsshserver.example.com
+</code></p>
+
+<p>This tells ssh that instead of connecting directly to targetsshserver.example.com's port 22, use a <strong>ProxyCommand</strong> to create the connection.</p>
+
+<p>In this case the command itself is an ssh: <code>ssh user@docker nc %h %p</code> which means start a <strong>NetCat</strong> (nc host port) via ssh.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -135,18 +135,25 @@
 
 <p>Of course you stil can&#8217;t use <code>service mysql start</code>, but at least you wont get those error messages.</p>
 
-<h2>issues / pull-reqs</h2>
+<h2>related issues / pull-reqs</h2>
 
 <p>I can see that the docker issues/pull requests are disscussing it. But im still not sure the proper way to go. But here are the references:</p>
 
 <ul>
 <li><a href="https://github.com/dotcloud/docker/issues/223">issue 223</a>: the original <strong>Run /sbin/init</strong> issue</li>
 <li><a href="https://github.com/dotcloud/docker/issues/1024">issue 1024</a>: the <strong>Container cannot connect to Upstart</strong> issue where i found the workaround</li>
+<li><a href="https://github.com/dotcloud/docker/issues/1311">issue 1311</a> : <strong>Production-ready process monitoring</strong></li>
 <li><a href="https://github.com/dotcloud/docker/pull/898">pull-req 898</a>: Inject dockerinit at /.dockerinit instead of overwriting /sbin/init</li>
 <li><a href="https://github.com/dotcloud/docker/pull/1209">pull-req 1209</a>: Upstart improvements</li>
 <li><a href="https://github.com/dotcloud/docker/pull/1883">pull-req 1883</a>:  /usr/sbin/policy-rc.d  is added since the vast majority of docker users are surprised when they apt-get install or apt-get upgrade and services fail to start and that sometimes makes the install fail</li>
 </ul>
 
+
+<h2>update</h2>
+
+<p>I just read the docker integration into <code>supervisor</code>-s () is <a href="http://blog.docker.io/2013/08/websockets-dockerfile-upgrade-better-registry-support-expert-mode-and-more/#better_integration_with_process_supervisors">planned</a> for the upcomming 0.7 version</p>
+
+<blockquote><p>For docker to be fully usable in production, it needs to cleanly integrate with the host machine’s process supervisor of choice. Whether it’s sysV-init, upstart, systemd, runit or supervisord, we want to make sure docker plays nice with your existing system. This will be a major focus of the 0.7 release.</p></blockquote>
 </div>
 
 
@@ -210,6 +217,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/06/access-docker-containers-via-internal-ip/">Access docker containers via internal ip</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/01/debug-ansible/">debug ansible</a>
       </li>
     
@@ -223,10 +234,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/24/spring-roobot-workaround/">Spring RooBot workaround</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/">Reload  tiles definitions in SpringMVC</a>
       </li>
     
   </ul>

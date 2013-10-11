@@ -9,7 +9,7 @@
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="If you reaaly want to see the ctual scripts ansible is running use the ANSIBLE_KEEP_REMOTE_FILES=1 to prevent ansible from deleting remote files. ">
+  <meta name="description" content="Whenn you run a lot of containers inside of a docker host, you can get lost of the forwarded ports. Let&#8217;s say you have 3 instances all exposing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,153 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/06/access-docker-containers-via-internal-ip/">Access Docker Containers via Internal Ip</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-06T09:34:00+02:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Whenn you run a lot of containers inside of a docker host, you can get lost of the forwarded ports. Let&#8217;s say you have 3 instances all exposing 3 ports: 22, 80 and 443. Docker will automatically assign &#8216;random&#8217; port numbers like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ID            ...  PORTS
+</span><span class='line'>656eb7831dda  ...  49162-&gt;22, 49163-&gt;80, 49164-&gt;443   
+</span><span class='line'>ff2141eb218d  ...  49159-&gt;22, 49160-&gt;80, 49161-&gt;443   
+</span><span class='line'>54b9dfd5400c  ...  49156-&gt;22, 49157-&gt;80, 49158-&gt;443   </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now its hard to remember all those ports, and is confusing that if you want to ssh into the first one, you use <code>ssh root@docker -p 49162</code> and in the browser you would use: <code>http://docker:49163</code>.</p>
+
+<p>There is an even bigger problem with random ports. Wehn your <strong>http</strong> server sometimes redirects you to <strong>https</strong>, you need the standard port numbers. The webserver running inside of a docker container, will redirect you to port <strong>443</strong> which will not be correct port (49164 in our case)</p>
+
+<p>So it would be much natural for the docker instances to use their ip address, with <em>straight</em> port numbers. But those ip addresses are only valid inside of the docker host. How to do the magic?</p>
+
+<h2>SSH is yor best friend</h2>
+
+<p>There is complete SOCKS proxy hidden indide of ssh. To get it alive you just have to toss a <code>-D 1099</code> parameter, and boom, it will listen on your localhost&#8217;s 1099 port and act as a proxy. So here is a how you create an ssh based <em>tunnel</em> :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -qTfN2 -D 1099 docker</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the curious the parameter meanings:</p>
+
+<ul>
+<li>q :- be very quite</li>
+<li>T :- Do not allocate a pseudo tty</li>
+<li>f :- move the ssh process to background</li>
+<li>N :- Do not execute remote command.</li>
+<li>2 :- Forces ssh to try protocol version 2 only.</li>
+</ul>
+
+
+<h2>docker internal IPs</h2>
+
+<p>How can you get the internal ip of a container? You can get all the dirty details by: <code>sudo docker inspect XXXXX</code>. For the moment the only interresting this is the IP addresses. So the oneliner is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for i in $(sudo docker ps -q); do sudo docker inspect $i| grep IPA; done</span></code></pre></td></tr></table></div></figure>
+
+
+<p>it will create the following list:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>    "IPAddress": "172.17.0.12",
+</span><span class='line'>    "IPAddress": "172.17.0.11",
+</span><span class='line'>    "IPAddress": "172.17.0.10",</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SOCKS proxy</h2>
+
+<p>Now all the programs which can use a SOCKS proxy can access the docker containers. For example let&#8217;s poke the first containers webserver with <code>curl</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl --proxy socks5h://localhost:1099  172.17.0.10</span></code></pre></td></tr></table></div></figure>
+
+
+<p>for a java process ypu can specify it by system properties: <code>-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1099</code></p>
+
+<h2>SOCKS proxy for the browser</h2>
+
+<p>You have probably already uses an http proxy in your browser. In that case <strong>all trafic</strong> goes throught the http proxy. For our usecase what we wan is:</p>
+
+<ul>
+<li>accessing docker containers via <strong>SOCKS proxy</strong></li>
+<li>all other shoud be accessed <strong>directly</strong></li>
+</ul>
+
+
+<p>Luckily thus problem is already solved by the <a href="http://en.wikipedia.org/wiki/Proxy_auto-config">Proxy auto-config</a> or shortly PAC. Its a JavaScript function which returns with the connection type: PROXY/SOCKS/DIRECT. See the sample below:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>function FindProxyForURL(url, host) {
+</span><span class='line'> 
+</span><span class='line'>        // URLs within this network are accessed through
+</span><span class='line'>        // socks proxy provided by ssh -D
+</span><span class='line'>        if (isInNet(host, "172.17.0.0", "255.255.0.0"))
+</span><span class='line'>        {
+</span><span class='line'>                return "SOCKS 127.0.0.1:1099";
+</span><span class='line'>        }
+</span><span class='line'> 
+</span><span class='line'>        return "DIRECT";
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>SSH doesn&#8217;t need a SOCKS proxy</h2>
+
+<p>We use ssh to create a SOCKS proxy, which can be used by other programs java/browser/curl and so on. But ssh is clever enough that if there is no SOCKS proxy opened, it can create it on demand:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -o ProxyCommand='ssh user@10.253.129.151 nc %h %p' user@targetsshserver.example.com</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This tells ssh that instead of connecting directly to targetsshserver.example.com&#8217;s port 22, use a <strong>ProxyCommand</strong> to create the connection.</p>
+
+<p>In this case the command itself is an ssh: <code>ssh user@docker nc %h %p</code> which means start a <strong>NetCat</strong> (nc host port) via ssh.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -179,18 +326,25 @@
 
 <p>Of course you stil can&#8217;t use <code>service mysql start</code>, but at least you wont get those error messages.</p>
 
-<h2>issues / pull-reqs</h2>
+<h2>related issues / pull-reqs</h2>
 
 <p>I can see that the docker issues/pull requests are disscussing it. But im still not sure the proper way to go. But here are the references:</p>
 
 <ul>
 <li><a href="https://github.com/dotcloud/docker/issues/223">issue 223</a>: the original <strong>Run /sbin/init</strong> issue</li>
 <li><a href="https://github.com/dotcloud/docker/issues/1024">issue 1024</a>: the <strong>Container cannot connect to Upstart</strong> issue where i found the workaround</li>
+<li><a href="https://github.com/dotcloud/docker/issues/1311">issue 1311</a> : <strong>Production-ready process monitoring</strong></li>
 <li><a href="https://github.com/dotcloud/docker/pull/898">pull-req 898</a>: Inject dockerinit at /.dockerinit instead of overwriting /sbin/init</li>
 <li><a href="https://github.com/dotcloud/docker/pull/1209">pull-req 1209</a>: Upstart improvements</li>
 <li><a href="https://github.com/dotcloud/docker/pull/1883">pull-req 1883</a>:  /usr/sbin/policy-rc.d  is added since the vast majority of docker users are surprised when they apt-get install or apt-get upgrade and services fail to start and that sometimes makes the install fail</li>
 </ul>
 
+
+<h2>update</h2>
+
+<p>I just read the docker integration into <code>supervisor</code>-s () is <a href="http://blog.docker.io/2013/08/websockets-dockerfile-upgrade-better-registry-support-expert-mode-and-more/#better_integration_with_process_supervisors">planned</a> for the upcomming 0.7 version</p>
+
+<blockquote><p>For docker to be fully usable in production, it needs to cleanly integrate with the host machine’s process supervisor of choice. Whether it’s sysV-init, upstart, systemd, runit or supervisord, we want to make sure docker plays nice with your existing system. This will be a major focus of the 0.7 release.</p></blockquote>
 </div>
   
   
@@ -456,6 +610,10 @@ to se those changes.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/06/access-docker-containers-via-internal-ip/">Access docker containers via internal ip</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/01/debug-ansible/">debug ansible</a>
       </li>
     
@@ -469,10 +627,6 @@ to se those changes.</p>
     
       <li class="post">
         <a href="/blog/2012/09/24/spring-roobot-workaround/">Spring RooBot workaround</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/">Reload  tiles definitions in SpringMVC</a>
       </li>
     
   </ul>
