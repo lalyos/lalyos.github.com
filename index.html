@@ -9,7 +9,9 @@
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Whenn you run a lot of containers inside of a docker host, you can get lost of the forwarded ports. Let&#8217;s say you have 3 instances all exposing &hellip;">
+  <meta name="description" content="Docker can be installed as binary from get.docker.io as described in the docs: Get the docker binary Linux 1
+2
+wget https://get.docker.io/builds/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/24/install-docker-binary/">Install Docker Binary</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-24T16:52:00+01:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Docker can be installed as binary from <code>get.docker.io</code> as described in the docs: <a href="http://docs.docker.io/en/latest/installation/binaries/#get-the-docker-binary">Get the docker binary</a></p>
+
+<h2>Linux</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget https://get.docker.io/builds/Linux/x86_64/docker-latest -O docker
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Mac</h2>
+
+<p>The mac binary installation is described in a different documentation page: <a href="http://docs.docker.io/en/latest/installation/mac/#docker-os-x-client">Docker OS X Client</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -o docker https://get.docker.io/builds/Darwin/x86_64/docker-latest
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/24/install-docker-binary/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -610,6 +673,10 @@ to se those changes.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/24/install-docker-binary/">install docker binary</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/06/access-docker-containers-via-internal-ip/">Access docker containers via internal ip</a>
       </li>
     
@@ -623,10 +690,6 @@ to se those changes.</p>
     
       <li class="post">
         <a href="/blog/2013/09/30/install-sshpass-on-mac/">Install sshpass on mac</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/24/spring-roobot-workaround/">Spring RooBot workaround</a>
       </li>
     
   </ul>
@@ -643,7 +706,7 @@ to se those changes.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - lalyos -
+  Copyright &copy; 2014 - lalyos -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

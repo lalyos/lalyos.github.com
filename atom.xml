@@ -4,7 +4,7 @@
   <title><![CDATA[What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2013-10-11T13:32:44+02:00</updated>
+  <updated>2014-02-24T17:21:25+01:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[install docker binary]]></title>
+    <link href="http://lalyos.github.com/blog/2014/02/24/install-docker-binary/"/>
+    <updated>2014-02-24T16:52:00+01:00</updated>
+    <id>http://lalyos.github.com/blog/2014/02/24/install-docker-binary</id>
+    <content type="html"><![CDATA[<p>Docker can be installed as binary from <code>get.docker.io</code> as described in the docs: <a href="http://docs.docker.io/en/latest/installation/binaries/#get-the-docker-binary">Get the docker binary</a></p>
+
+<h2>Linux</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget https://get.docker.io/builds/Linux/x86_64/docker-latest -O docker
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Mac</h2>
+
+<p>The mac binary installation is described in a different documentation page: <a href="http://docs.docker.io/en/latest/installation/mac/#docker-os-x-client">Docker OS X Client</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -o docker https://get.docker.io/builds/Darwin/x86_64/docker-latest
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<h2>Install a Previous Version</h2>
+
+<p>Sometimes I need a specific docker client version as 0.8 server is not compatible with earlier version. By playing with the url, I figured that by changing <code>latest</code> to a specific version number i can download earlier releases:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># get 0.7.5
+</span><span class='line'>curl -O http://get.docker.io/builds/Darwin/x86_64/docker-0.7.5
+</span><span class='line'>chmod +x docker-0.7.5
+</span><span class='line'>
+</span><span class='line'># get 0.8.0
+</span><span class='line'>curl -O http://get.docker.io/builds/Darwin/x86_64/docker-0.8.0
+</span><span class='line'>chmod +x docker-0.8.0</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Access docker containers via internal ip]]></title>

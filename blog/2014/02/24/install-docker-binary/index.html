@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: spring - What is the name of this Blog?</title>
+  <title>install docker binary - What is the name of this Blog?</title>
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Category: spring">
+  <meta name="description" content="Docker can be installed as binary from get.docker.io as described in the docs: Get the docker binary Linux 1
+2
+wget https://get.docker.io/builds/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lalyos.github.comblog/categories/spring/">
+  <link rel="canonical" href="http://lalyos.github.com/blog/2014/02/24/install-docker-binary/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,35 +77,121 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Spring</h1>
+    
+      <h1 class="entry-title">Install Docker Binary</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-24T16:52:00+01:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>Docker can be installed as binary from <code>get.docker.io</code> as described in the docs: <a href="http://docs.docker.io/en/latest/installation/binaries/#get-the-docker-binary">Get the docker binary</a></p>
+
+<h2>Linux</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget https://get.docker.io/builds/Linux/x86_64/docker-latest -O docker
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Mac</h2>
+
+<p>The mac binary installation is described in a different documentation page: <a href="http://docs.docker.io/en/latest/installation/mac/#docker-os-x-client">Docker OS X Client</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -o docker https://get.docker.io/builds/Darwin/x86_64/docker-latest
+</span><span class='line'>chmod +x docker</span></code></pre></td></tr></table></div></figure>
 
 
 
-  
-  <h2>2012</h2>
 
-<article>
-  
-<h1><a href="/blog/2012/08/29/tiles-reload-definitions-in-springmvc/">Reload  tiles definitions in SpringMVC</a></h1>
-<time datetime="2012-08-29T13:00:00+02:00" pubdate><span class='month'>Aug</span> <span class='day'>29</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/reload/'>reload</a>, <a class='category' href='/blog/categories/spring/'>spring</a>, <a class='category' href='/blog/categories/springmvc/'>springmvc</a>, <a class='category' href='/blog/categories/tiles/'>tiles</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<h2>Install a Previous Version</h2>
+
+<p>Sometimes I need a specific docker client version as 0.8 server is not compatible with earlier version. By playing with the url, I figured that by changing <code>latest</code> to a specific version number i can download earlier releases:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># get 0.7.5
+</span><span class='line'>curl -O http://get.docker.io/builds/Darwin/x86_64/docker-0.7.5
+</span><span class='line'>chmod +x docker-0.7.5
+</span><span class='line'>
+</span><span class='line'># get 0.8.0
+</span><span class='line'>curl -O http://get.docker.io/builds/Darwin/x86_64/docker-0.8.0
+</span><span class='line'>chmod +x docker-0.8.0</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">lalyos</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-24T16:52:00+01:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2014/02/24/install-docker-binary/" data-via="" data-counturl="http://lalyos.github.com/blog/2014/02/24/install-docker-binary/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/06/access-docker-containers-via-internal-ip/" title="Previous Post: Access docker containers via internal ip">&laquo; Access docker containers via internal ip</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
