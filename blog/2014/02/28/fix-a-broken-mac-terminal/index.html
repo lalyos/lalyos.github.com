@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: docker - What is the name of this Blog?</title>
+  <title>Fix a broken mac terminal - What is the name of this Blog?</title>
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Category: docker">
+  <meta name="description" content="Sometimes my Terminal gets broken by either displaying binary files, or sometimes caused by a broken ssh connection. You can fix it by copy pasting &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lalyos.github.comblog/categories/docker/">
+  <link rel="canonical" href="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,36 +75,104 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Docker</h1>
+    
+      <h1 class="entry-title">Fix a Broken Mac Terminal</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T14:32:00+01:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Sometimes my <code>Terminal</code> gets broken by either displaying binary files, or sometimes caused by a broken ssh connection.</p>
 
-  
-  <h2>2013</h2>
+<p>You can fix it by copy pasting the following line:</p>
 
-<article>
-  
-<h1><a href="/blog/2013/10/01/fixing-startup-on-docker/">fixing startup on docker</a></h1>
-<time datetime="2013-10-01T15:31:00+02:00" pubdate><span class='month'>Oct</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/docker/'>docker</a>, <a class='category' href='/blog/categories/startup/'>startup</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
-</footer>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tput init
+</span><span class='line'>tput reset
+</span><span class='line'>reset
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
-
+<p>You might not see the charaters even after pasted to the terminal, but keep on press <code>ENTER</code>, and suddenly your terminal is back to normal.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">lalyos</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T14:32:00+01:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/terminal/'>terminal</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/" data-via="" data-counturl="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/24/install-docker-binary/" title="Previous Post: install docker binary">&laquo; install docker binary</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -160,7 +228,10 @@
       var disqus_shortname = 'lalyosblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/';
+        var disqus_url = 'http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

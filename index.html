@@ -9,9 +9,7 @@
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Docker can be installed as binary from get.docker.io as described in the docs: Get the docker binary Linux 1
-2
-wget https://get.docker.io/builds/ &hellip;">
+  <meta name="description" content="Sometimes my Terminal gets broken by either displaying binary files, or sometimes caused by a broken ssh connection. You can fix it by copy pasting &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,55 @@ wget https://get.docker.io/builds/ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/28/fix-a-broken-mac-terminal/">Fix a Broken Mac Terminal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T14:32:00+01:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sometimes my <code>Terminal</code> gets broken by either displaying binary files, or sometimes caused by a broken ssh connection.</p>
+
+<p>You can fix it by copy pasting the following line:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tput init
+</span><span class='line'>tput reset
+</span><span class='line'>reset
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You might not see the charaters even after pasted to the terminal, but keep on press <code>ENTER</code>, and suddenly your terminal is back to normal.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -673,6 +720,10 @@ to se those changes.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/28/fix-a-broken-mac-terminal/">Fix a broken mac terminal</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/24/install-docker-binary/">install docker binary</a>
       </li>
     
@@ -686,10 +737,6 @@ to se those changes.</p>
     
       <li class="post">
         <a href="/blog/2013/10/01/fixing-startup-on-docker/">fixing startup on docker</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/30/install-sshpass-on-mac/">Install sshpass on mac</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2014-02-28T10:16:35+01:00</updated>
+  <updated>2014-02-28T14:40:09+01:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fix a broken mac terminal]]></title>
+    <link href="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/"/>
+    <updated>2014-02-28T14:32:00+01:00</updated>
+    <id>http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal</id>
+    <content type="html"><![CDATA[<p>Sometimes my <code>Terminal</code> gets broken by either displaying binary files, or sometimes caused by a broken ssh connection.</p>
+
+<p>You can fix it by copy pasting the following line:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tput init
+</span><span class='line'>tput reset
+</span><span class='line'>reset
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You might not see the charaters even after pasted to the terminal, but keep on press <code>ENTER</code>, and suddenly your terminal is back to normal.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[install docker binary]]></title>
