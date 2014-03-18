@@ -9,7 +9,8 @@
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Sometimes my Terminal gets broken by either displaying binary files, or sometimes caused by a broken ssh connection. You can fix it by copy pasting &hellip;">
+  <meta name="description" content="When it comes to which java to use, Hadoop is a bit picky. It prefers
+the Oracle jdk. See the list of apache tested JDKs. Lately all the google &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/18/oracle-jdk-7-on-centos/">Oracle JDK 7 on CentOS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-18T21:36:00+01:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When it comes to which java to use, Hadoop is a bit picky. It prefers
+the Oracle jdk. See the <a href="http://wiki.apache.org/hadoop/HadoopJavaVersions">list of apache tested JDKs</a>.</p>
+
+<p>Lately all the google references which use <code>wget</code> or <code>curl</code> are broken.</p>
+
+<h2>Silent install</h2>
+
+<p>For the impatient here is the <code>one-liner</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -LO <span class="s1">&#39;http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm&#39;</span> <span class="se">\</span>
+</span><span class='line'>-H <span class="s1">&#39;Cookie: oraclelicense=accept-securebackup-cookie&#39;</span>
+</span><span class='line'>rpm -i jdk-7u51-linux-x64.rpm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or if you really want it in one single line</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -LO <span class="s1">&#39;http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm&#39;</span> -H <span class="s1">&#39;Cookie: oraclelicense=accept-securebackup-cookie&#39;</span> <span class="o">&amp;&amp;</span> rpm -i jdk-7u51-linux-x64.rpm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>tl;dr</h2>
+
+<p>What I did was:
+- opened Chrome <strong>Developer Toolbar</strong>
+- went to the official oracle <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">download page</a>
+- clicked <em>Accept License Agreement</em>
+- clicked on <strong>jdk-7u51-linux-x64.rpm</strong>
+- as the download has started, I switched to the <strong>Network</strong> tab of the Developer Toolbar, and right-clicked on the rpm, and choos <strong>Copy as cURL</strong></p>
+
+<p>Voila! Of cours it was a huge line, but it can be trimmed down to just one singe required cookie: <code>oraclelicense=accept-securebackup-cookie</code></p>
+
+<p>Meanwhile it appeared on <a href="http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux">stackowerflow</a> with a fatty +50 reputation bounty.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -720,6 +793,10 @@ to se those changes.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/18/oracle-jdk-7-on-centos/">Oracle JDK 7 on CentOS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/28/fix-a-broken-mac-terminal/">Fix a broken mac terminal</a>
       </li>
     
@@ -733,10 +810,6 @@ to se those changes.</p>
     
       <li class="post">
         <a href="/blog/2013/10/01/debug-ansible/">debug ansible</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/01/fixing-startup-on-docker/">fixing startup on docker</a>
       </li>
     
   </ul>

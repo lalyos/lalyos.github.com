@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: centos | What is the name of this Blog?]]></title>
+  <link href="http://lalyos.github.com/blog/categories/centos/atom.xml" rel="self"/>
+  <link href="http://lalyos.github.com/"/>
+  <updated>2014-03-18T22:34:13+01:00</updated>
+  <id>http://lalyos.github.com/</id>
+  <author>
+    <name><![CDATA[lalyos]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle JDK 7 on CentOS]]></title>
+    <link href="http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/"/>
+    <updated>2014-03-18T21:36:00+01:00</updated>
+    <id>http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos</id>
+    <content type="html"><![CDATA[<p>When it comes to which java to use, Hadoop is a bit picky. It prefers
+the Oracle jdk. See the <a href="http://wiki.apache.org/hadoop/HadoopJavaVersions">list of apache tested JDKs</a>.</p>
+
+<p>Lately all the google references which use <code>wget</code> or <code>curl</code> are broken.</p>
+
+<h2>Silent install</h2>
+
+<p>For the impatient here is the <code>one-liner</code>.</p>
+
+<p><code>bash
+curl -LO 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm' \
+-H 'Cookie: oraclelicense=accept-securebackup-cookie'
+rpm -i jdk-7u51-linux-x64.rpm
+</code>
+or if you really want it in one single line</p>
+
+<p><code>bash
+curl -LO 'http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm' -H 'Cookie: oraclelicense=accept-securebackup-cookie' &amp;&amp; rpm -i jdk-7u51-linux-x64.rpm
+</code></p>
+
+<h2>tl;dr</h2>
+
+<p>What I did was:
+- opened Chrome <strong>Developer Toolbar</strong>
+- went to the official oracle <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">download page</a>
+- clicked <em>Accept License Agreement</em>
+- clicked on <strong>jdk-7u51-linux-x64.rpm</strong>
+- as the download has started, I switched to the <strong>Network</strong> tab of the Developer Toolbar, and right-clicked on the rpm, and choos <strong>Copy as cURL</strong></p>
+
+<p>Voila! Of cours it was a huge line, but it can be trimmed down to just one singe required cookie: <code>oraclelicense=accept-securebackup-cookie</code></p>
+
+<p>Meanwhile it appeared on <a href="http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux">stackowerflow</a> with a fatty +50 reputation bounty.</p>
+]]></content>
+  </entry>
+  
+</feed>

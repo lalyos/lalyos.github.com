@@ -485,9 +485,9 @@ Please, don't. https://github.com/styleguide/templates/2.0
       $(document).on('keydown', function(event) {
         if (event.target === document.body &amp;&amp; event.keyCode === 192 &amp;&amp; !event.metaKey) {
           $('#parallax_wrapper').css('-webkit-filter','grayscale(25%)')
-          document.cookie = 'stats=yes; path=/';
+
           setTimeout(function() {
-            location.reload();
+            window.location = '/site/toggle_staff'
           }, 250)
           return false;
         }
@@ -619,6 +619,10 @@ by adding the <strong>checkRefresh</strong> property:</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/18/oracle-jdk-7-on-centos/">Oracle JDK 7 on CentOS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/28/fix-a-broken-mac-terminal/">Fix a broken mac terminal</a>
       </li>
     
@@ -632,10 +636,6 @@ by adding the <strong>checkRefresh</strong> property:</p>
     
       <li class="post">
         <a href="/blog/2013/10/01/debug-ansible/">debug ansible</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/01/fixing-startup-on-docker/">fixing startup on docker</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: spring | What is the name of this Blog?]]></title>
   <link href="http://lalyos.github.com/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://lalyos.github.com/"/>
-  <updated>2014-02-28T14:40:09+01:00</updated>
+  <updated>2014-03-18T22:34:13+01:00</updated>
   <id>http://lalyos.github.com/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
@@ -402,9 +402,9 @@ Please, don't. https://github.com/styleguide/templates/2.0
       $(document).on('keydown', function(event) {
         if (event.target === document.body &amp;&amp; event.keyCode === 192 &amp;&amp; !event.metaKey) {
           $('#parallax_wrapper').css('-webkit-filter','grayscale(25%)')
-          document.cookie = 'stats=yes; path=/';
+
           setTimeout(function() {
-            location.reload();
+            window.location = '/site/toggle_staff'
           }, 250)
           return false;
         }

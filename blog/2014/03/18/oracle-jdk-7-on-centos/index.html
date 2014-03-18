@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Fix a broken mac terminal - What is the name of this Blog?</title>
+  <title>Oracle JDK 7 on CentOS - What is the name of this Blog?</title>
   <meta name="author" content="lalyos">
 
   
-  <meta name="description" content="Sometimes my Terminal gets broken by either displaying binary files, or sometimes caused by a broken ssh connection. You can fix it by copy pasting &hellip;">
+  <meta name="description" content="When it comes to which java to use, Hadoop is a bit picky. It prefers
+the Oracle jdk. See the list of apache tested JDKs. Lately all the google &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/">
+  <link rel="canonical" href="http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Fix a Broken Mac Terminal</h1>
+      <h1 class="entry-title">Oracle JDK 7 on CentOS</h1>
     
     
       <p class="meta">
@@ -95,27 +96,50 @@
   
 
 
-<time datetime="2014-02-28T14:32:00+01:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+<time datetime="2014-03-18T21:36:00+01:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Sometimes my <code>Terminal</code> gets broken by either displaying binary files, or sometimes caused by a broken ssh connection.</p>
+<div class="entry-content"><p>When it comes to which java to use, Hadoop is a bit picky. It prefers
+the Oracle jdk. See the <a href="http://wiki.apache.org/hadoop/HadoopJavaVersions">list of apache tested JDKs</a>.</p>
 
-<p>You can fix it by copy pasting the following line:</p>
+<p>Lately all the google references which use <code>wget</code> or <code>curl</code> are broken.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h2>Silent install</h2>
+
+<p>For the impatient here is the <code>one-liner</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>tput init
-</span><span class='line'>tput reset
-</span><span class='line'>reset
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -LO <span class="s1">&#39;http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm&#39;</span> <span class="se">\</span>
+</span><span class='line'>-H <span class="s1">&#39;Cookie: oraclelicense=accept-securebackup-cookie&#39;</span>
+</span><span class='line'>rpm -i jdk-7u51-linux-x64.rpm
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You might not see the charaters even after pasted to the terminal, but keep on press <code>ENTER</code>, and suddenly your terminal is back to normal.</p>
+<p>or if you really want it in one single line</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -LO <span class="s1">&#39;http://download.oracle.com/otn-pub/java/jdk/7u51-b13/jdk-7u51-linux-x64.rpm&#39;</span> -H <span class="s1">&#39;Cookie: oraclelicense=accept-securebackup-cookie&#39;</span> <span class="o">&amp;&amp;</span> rpm -i jdk-7u51-linux-x64.rpm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>tl;dr</h2>
+
+<p>What I did was:
+- opened Chrome <strong>Developer Toolbar</strong>
+- went to the official oracle <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">download page</a>
+- clicked <em>Accept License Agreement</em>
+- clicked on <strong>jdk-7u51-linux-x64.rpm</strong>
+- as the download has started, I switched to the <strong>Network</strong> tab of the Developer Toolbar, and right-clicked on the rpm, and choos <strong>Copy as cURL</strong></p>
+
+<p>Voila! Of cours it was a huge line, but it can be trimmed down to just one singe required cookie: <code>oraclelicense=accept-securebackup-cookie</code></p>
+
+<p>Meanwhile it appeared on <a href="http://stackoverflow.com/questions/10268583/how-to-automate-download-and-instalation-of-java-jdk-on-linux">stackowerflow</a> with a fatty +50 reputation bounty.</p>
 </div>
 
 
@@ -138,12 +162,12 @@
   
 
 
-<time datetime="2014-02-28T14:32:00+01:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+<time datetime="2014-03-18T21:36:00+01:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/osx/'>osx</a>, <a class='category' href='/blog/categories/terminal/'>terminal</a>
+    <a class='category' href='/blog/categories/centos/'>centos</a>, <a class='category' href='/blog/categories/devops/'>devops</a>, <a class='category' href='/blog/categories/java/'>java</a>
   
 </span>
 
@@ -152,7 +176,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/" data-via="" data-counturl="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/" data-via="" data-counturl="http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/" >Tweet</a>
   
   
   
@@ -161,10 +185,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/02/24/install-docker-binary/" title="Previous Post: install docker binary">&laquo; install docker binary</a>
+        <a class="basic-alignment left" href="/blog/2014/02/28/fix-a-broken-mac-terminal/" title="Previous Post: Fix a broken mac terminal">&laquo; Fix a broken mac terminal</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/03/18/oracle-jdk-7-on-centos/" title="Next Post: Oracle JDK 7 on CentOS">Oracle JDK 7 on CentOS &raquo;</a>
       
     </p>
   </footer>
@@ -231,8 +253,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/';
-        var disqus_url = 'http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/';
+        var disqus_identifier = 'http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/';
+        var disqus_url = 'http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/';
         var disqus_script = 'embed.js';
       
     (function () {
