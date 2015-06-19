@@ -27,5 +27,5 @@ Actually it was created, but the team refused to take [it](https://github.com/mx
 However there is an unofficial brew package:
 
 ```
-brew install https://raw.github.com/eugeneoden/homebrew/eca9de1/Library/Formula/sshpass.rb
+brew install http://git.io/sshpass.rb
 ```
