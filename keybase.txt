@@ -1,0 +1,78 @@
+==================================================================
+https://keybase.io/lalyos
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://lalyos.github.io
+  * I am lalyos (https://keybase.io/lalyos) on keybase.
+  * I have a public key with fingerprint 6CDF 8D01 D55D 18B8 5F12  AF64 7949 F304 320E F43D
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.8.18"
+        },
+        "key": {
+            "eldest_kid": "010162a6341003e8a93bbf7a00b3a64ace533eff8b3445cf973bbac64e62bbf176d80a",
+            "fingerprint": "6cdf8d01d55d18b85f12af647949f304320ef43d",
+            "host": "keybase.io",
+            "key_id": "7949f304320ef43d",
+            "kid": "010162a6341003e8a93bbf7a00b3a64ace533eff8b3445cf973bbac64e62bbf176d80a",
+            "uid": "b675bfbb7375202dc281ddca9bd56319",
+            "username": "lalyos"
+        },
+        "service": {
+            "hostname": "lalyos.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1440690455,
+    "expire_in": 157680000,
+    "prev": "9c08972ca03c860a6e8c955e732d7f6b7d106a4866b6be2ed252c66338f91e15",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owGtkl1MFFcUx3eBJUpCIZFaslghU9EiyzKfd2aoRG1rCxXCQ7GlhnQ7H3dgyrI7
+7M4CKxDLCqSQYrXRJW4EbU0LwaCmEQ3BgmjKhzYWkKShjdJQsUig7SKopRY7Q/HB
+pI+9Tzf3/M7//M8591BkqGGN0Zt5Pwx/biHdeP0eb9gzgW2sQHin6EXSKhDBLkOH
+qt8cXDFE0pAi6OU5N7TKzgSHU4TWD90Jq4wFKYUut+x0aBRqZawYg1RZdF7PhnYR
+ulVbkSzqUQzFAM4BgsRQlIAMxxI8L9EcivIEB0hOgBRBQElieIIkKUFiaS3OCYCE
+ANdAjAYig3JaQUl2FECX4pJ1iwgQRIkRUUykKBFjeIaSMJyTAEmzJCsRKEngKJRI
+QtQSC51u9ZlmkBWnthV7/8H/z749K3I8oCle4nmaoCkcxUUBZzBRFDiWFylAYKwO
+uqFrdfB2zu51uvWRam+lsgD1sep9PBO3FshqoYf/tyPF5VSdgtOuRQtVVXGn6dmq
+V9HxMsjbVoVsvOwQtUnqGww8XSGmoYIq69IYSaKARUmKsiCwXJFd0CbrBEUDBtWO
+XgiWapqsgDIsjQscSggMQDkAGYGlKEgTuEhLgKdFDAUcyQDAAx7iUMQpXACAIBiJ
+xSBGIXpvJQ4nkkZoPrkCTdItFzg41eOCSFV9yIYwg3GNIdwUov9RQ8Ta6Kcf96Vg
+tOGzpQcvLsWGpoRJWTerpnInHrXmrc/esO1wV/BcTnGC5w77WtIp3/xvOYOt35tm
+h+5iRNGVV/3zc7gpcWzBNyjEt/26PzGiYqTk77g9e1tOGac/rR7fe+Dok2u1x2cH
+Tp+ob7lzLP9a74GK8tzYgXd21zz8ZYiYQIwNuzJLlpWrj7dVfje7fWMC6Yvd+q6l
+8ZL19reLMf6Q9V0JqZU41Rd/QaGn56nFXTNHJhWipHBtVN2bh4ebZ0KuDNtfL17s
+mbrIvNXGJLn7mtiD+839g6Crs0uQ3hAbIk2tBcH6s6fLItmmdmj+67YnpXUq574x
+JSU0v2N01P8oMPpk5834kJieRNS0Y25TadXPH9dakeN9w59Xjy7vzsrIrXXcSG62
+tz9WRd95u+XG5sz+haUHGbcs4b2i8auAIOTNe9ts9stq4lSwoxHtnpwLdL7tG+kf
+9Pnv7RvfCX/46eVv/GdS884f6/wCtvxx14KZv27sPXmrmkgrvLhveLGoKUNpzu84
+Q44zH5R3p05encxrMCs/nlxXVxOe/L5hbPlctfkFkF128Mjlo1tr39shKK8E01sb
+UntitnwkV09trx/ia7ekR2DPd1dGj/RV/BmZ0xvIfjgyGoz7xDB4ATbFzZX8ztcJ
+Jm/DZn9R1Kao4S9PmNuvJ82czapxW5LHMi95TdhASksAm173Dw==
+=LTAf
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/lalyos
+
+==================================================================
+
