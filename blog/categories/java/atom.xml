@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: java | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/java/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Oracle JDK 7 on CentOS]]></title>
-    <link href="http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/"/>
+    <link href="https://lalyos.github.io/blog/2014/03/18/oracle-jdk-7-on-centos/"/>
     <updated>2014-03-18T21:36:00+01:00</updated>
-    <id>http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos</id>
+    <id>https://lalyos.github.io/blog/2014/03/18/oracle-jdk-7-on-centos</id>
     <content type="html"><![CDATA[<p>When it comes to which java to use, Hadoop is a bit picky. It prefers
 the Oracle jdk. See the <a href="http://wiki.apache.org/hadoop/HadoopJavaVersions">list of apache tested JDKs</a>.</p>
 

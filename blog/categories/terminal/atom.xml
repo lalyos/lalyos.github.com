@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: terminal | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/terminal/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/terminal/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Fix a broken mac terminal]]></title>
-    <link href="http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/"/>
+    <link href="https://lalyos.github.io/blog/2014/02/28/fix-a-broken-mac-terminal/"/>
     <updated>2014-02-28T14:32:00+01:00</updated>
-    <id>http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal</id>
+    <id>https://lalyos.github.io/blog/2014/02/28/fix-a-broken-mac-terminal</id>
     <content type="html"><![CDATA[<p>Sometimes my <code>Terminal</code> gets broken by either displaying binary files, or sometimes caused by a broken ssh connection.</p>
 
 <p>You can fix it by copy pasting the following line:</p>

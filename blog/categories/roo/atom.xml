@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: roo | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/roo/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/roo/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Spring RooBot workaround]]></title>
-    <link href="http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround/"/>
+    <link href="https://lalyos.github.io/blog/2012/09/24/spring-roobot-workaround/"/>
     <updated>2012-09-24T09:07:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround</id>
+    <id>https://lalyos.github.io/blog/2012/09/24/spring-roobot-workaround</id>
     <content type="html"><![CDATA[<p>I'm doing all sorts of trainings inside <a href="http://www.epam.com/">Epam</a>, and one of them is Spring Roo. Roo is a rapid application development tool, you can create maven based SpringMVC applications which serves hibernate JPA entities backed by mysql It's not limited to this framework mixture, although this is one of the most popular.</p>
 
 <p>Spring Roo is modular, you can install new features with the <strong>install addon</strong> command. The actual list of addons is collected by a process called <strong>RooBot</strong>. For some reason RooBot is unable to di his work since late June. Some explanation can be found at the <a href="https://jira.springsource.org/browse/ROO-3184">ROO-3184 Jira Issue</a>.</p>

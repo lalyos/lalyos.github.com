@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: reload | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/reload/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/reload/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Reload  tiles definitions in SpringMVC]]></title>
-    <link href="http://lalyos.github.com/blog/2012/08/29/tiles-reload-definitions-in-springmvc/"/>
+    <link href="https://lalyos.github.io/blog/2012/08/29/tiles-reload-definitions-in-springmvc/"/>
     <updated>2012-08-29T13:00:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2012/08/29/tiles-reload-definitions-in-springmvc</id>
+    <id>https://lalyos.github.io/blog/2012/08/29/tiles-reload-definitions-in-springmvc</id>
     <content type="html"><![CDATA[<p>If you have a springMVC application, normally you want some layout templating framewrok
 so you don't have to repeat header/menu/footer in each jsp. One of the most
 popular choice is <a href="http://tiles.apache.org/">tiles</a>. Spring roo generates mvc apps use them as well.</p>
