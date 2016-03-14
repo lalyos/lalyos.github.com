@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: homebrew | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/homebrew/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/homebrew/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Install sshpass on mac]]></title>
-    <link href="http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/"/>
+    <link href="https://lalyos.github.io/blog/2013/09/30/install-sshpass-on-mac/"/>
     <updated>2013-09-30T14:07:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac</id>
+    <id>https://lalyos.github.io/blog/2013/09/30/install-sshpass-on-mac</id>
     <content type="html"><![CDATA[<p>I'm experimenting with <a href="http://www.ansibleworks.com/">ansibe</a>, an awesome IT orchestration engine. It deservse its own blog entry, but in short: <strong>It's an alternative of puppet and chef, but its much easier to learn</strong>, and dowsn't require any client side agent installation.</p>
 
 <h2>passwordless ssh</h2>

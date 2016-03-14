@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ubuntu | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/ubuntu/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[fixing startup on docker]]></title>
-    <link href="http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/"/>
+    <link href="https://lalyos.github.io/blog/2013/10/01/fixing-startup-on-docker/"/>
     <updated>2013-10-01T15:31:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker</id>
+    <id>https://lalyos.github.io/blog/2013/10/01/fixing-startup-on-docker</id>
     <content type="html"><![CDATA[<p>When working in <a href="http://www.docker.io/">docker</a> container, you need to start services differently. Let's say you want to start <strong>mysql</strong>. You have 3 choices:</p>
 
 <ul>

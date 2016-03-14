@@ -1,53 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://lalyos.github.com/blog/2012/07/10/maven-tomcat-in-debug-mode/</loc>
+        <loc>https://lalyos.github.io/blog/2012/07/10/maven-tomcat-in-debug-mode/</loc>
         <lastmod>2014-03-17T10:41:27+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2012/08/29/tiles-reload-definitions-in-springmvc/</loc>
+        <loc>https://lalyos.github.io/blog/2012/08/29/tiles-reload-definitions-in-springmvc/</loc>
         <lastmod>2014-03-17T10:41:27+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2012/09/24/spring-roobot-workaround/</loc>
+        <loc>https://lalyos.github.io/blog/2012/09/24/spring-roobot-workaround/</loc>
         <lastmod>2014-03-17T10:41:27+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2013/09/30/install-sshpass-on-mac/</loc>
+        <loc>https://lalyos.github.io/blog/2013/09/30/install-sshpass-on-mac/</loc>
         <lastmod>2014-03-17T10:41:27+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2013/10/01/fixing-startup-on-docker/</loc>
+        <loc>https://lalyos.github.io/blog/2013/10/01/fixing-startup-on-docker/</loc>
         <lastmod>2014-03-17T10:51:31+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2013/10/01/debug-ansible/</loc>
+        <loc>https://lalyos.github.io/blog/2013/10/01/debug-ansible/</loc>
         <lastmod>2014-03-17T10:41:27+01:00</lastmod>
     </url>
     <url>
         <loc>
-            http://lalyos.github.com/blog/2013/10/06/access-docker-containers-via-internal-ip/
+            https://lalyos.github.io/blog/2013/10/06/access-docker-containers-via-internal-ip/
         </loc>
         <lastmod>2014-03-17T10:51:31+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2014/02/24/install-docker-binary/</loc>
+        <loc>https://lalyos.github.io/blog/2014/02/24/install-docker-binary/</loc>
         <lastmod>2014-03-17T10:51:31+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2014/02/28/fix-a-broken-mac-terminal/</loc>
+        <loc>https://lalyos.github.io/blog/2014/02/28/fix-a-broken-mac-terminal/</loc>
         <lastmod>2014-03-17T10:51:31+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/2014/03/18/oracle-jdk-7-on-centos/</loc>
+        <loc>https://lalyos.github.io/blog/2014/03/18/oracle-jdk-7-on-centos/</loc>
         <lastmod>2014-03-18T22:34:13+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/blog/archives/</loc>
+        <loc>https://lalyos.github.io/blog/archives/</loc>
         <lastmod>2014-03-18T22:34:13+01:00</lastmod>
     </url>
     <url>
-        <loc>http://lalyos.github.com/</loc>
+        <loc>https://lalyos.github.io/</loc>
         <lastmod>2014-03-18T22:34:13+01:00</lastmod>
     </url>
 </urlset>

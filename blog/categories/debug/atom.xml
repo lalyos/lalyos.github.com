@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: debug | What is the name of this Blog?]]></title>
-  <link href="http://lalyos.github.com/blog/categories/debug/atom.xml" rel="self"/>
-  <link href="http://lalyos.github.com/"/>
+  <link href="https://lalyos.github.io/blog/categories/debug/atom.xml" rel="self"/>
+  <link href="https://lalyos.github.io/"/>
   <updated>2014-03-18T22:34:13+01:00</updated>
-  <id>http://lalyos.github.com/</id>
+  <id>https://lalyos.github.io/</id>
   <author>
     <name><![CDATA[lalyos]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[debug ansible]]></title>
-    <link href="http://lalyos.github.com/blog/2013/10/01/debug-ansible/"/>
+    <link href="https://lalyos.github.io/blog/2013/10/01/debug-ansible/"/>
     <updated>2013-10-01T16:51:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2013/10/01/debug-ansible</id>
+    <id>https://lalyos.github.io/blog/2013/10/01/debug-ansible</id>
     <content type="html"><![CDATA[<p>If you reaaly want to see the ctual scripts ansible is running use the  <code>ANSIBLE_KEEP_REMOTE_FILES=1</code> to prevent ansible from deleting remote files.</p>
 
 <!-- more -->
@@ -55,9 +55,9 @@ ANSIBLE_KEEP_REMOTE_FILES=1  ansible -vvvv host -m shell -a 'hstname'
   
   <entry>
     <title type="html"><![CDATA[Starting tomcat in debug mode from maven]]></title>
-    <link href="http://lalyos.github.com/blog/2012/07/10/maven-tomcat-in-debug-mode/"/>
+    <link href="https://lalyos.github.io/blog/2012/07/10/maven-tomcat-in-debug-mode/"/>
     <updated>2012-07-10T11:00:00+02:00</updated>
-    <id>http://lalyos.github.com/blog/2012/07/10/maven-tomcat-in-debug-mode</id>
+    <id>https://lalyos.github.io/blog/2012/07/10/maven-tomcat-in-debug-mode</id>
     <content type="html"><![CDATA[<p>If you want to start tomcat from maven you just simply run:</p>
 
 <p><code>
